@@ -37,9 +37,11 @@ void draw()
  for (Particle p : particles)
     {
       p.display();
+      p.velocity.mult(.995);
     }
  fill(100);
  ellipse(mouseX, mouseY, 10, 10);
+ 
     
  for (Particle p: particles)
   {
@@ -57,6 +59,8 @@ void draw()
     push.mult(sqrt(sq(mouseX-pmouseX)+sq(mouseY-pmouseY)));
     
     p.push(push);
+    
+    //p.velocity.mult(p.time);
     
     //find vector from mouse to p, scale into unit vector , scale by the distance between mouse and pmouse
    // float distance = dist(p.position.x, p.position.y, mouseX, mouseY)<70);

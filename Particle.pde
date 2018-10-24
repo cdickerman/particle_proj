@@ -2,13 +2,14 @@ class Particle
 {
   
   float r; 
-
+  float time = millis()/1100;
   PVector velocity, position, acceleration;
   int c;
   
   Particle(float r, PVector position, PVector velocity, int c)
   {
     this.r = r;
+    //time = 0; 
     this.position = position;
     this.velocity = velocity;
     acceleration = new PVector(0,.1);
@@ -23,12 +24,12 @@ class Particle
    // velocity.add(acceleration);
    
    if(position.x < r || position.x>width-r)
-      velocity.x *=-.91;
+      velocity.x *=-1;
      
       
      
     if(position.y <r || position.y>height-r)
-      velocity.y *=-.91;  
+      velocity.y *=-1;  
       
   }
 
