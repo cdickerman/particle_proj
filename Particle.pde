@@ -5,8 +5,10 @@ class Particle
   float time = millis()/1100;
   PVector velocity, position, acceleration;
   int c;
+  float startXPos;
+  float startYPos;
   
-  Particle(float r, PVector position, PVector velocity, int c)
+  Particle(float r, PVector position, PVector velocity, int c, float startXPos, float startYPos)
   {
     this.r = r;
     //time = 0; 
@@ -14,6 +16,8 @@ class Particle
     this.velocity = velocity;
     acceleration = new PVector(0,.1);
     this.c = c;
+    this.startXPos = startXPos;
+    this.startYPos = startYPos;
   }
   
   void display()
@@ -39,4 +43,10 @@ void push(PVector force)
    velocity.add(force);
  }
  
+void pull(PVector force)
+{
+  if (force.mag()> .03)
+     force.setMag(.03);
+   velocity.add(force);
+}
 }

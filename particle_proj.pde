@@ -2,19 +2,19 @@
  //make the acceleration decrease as a result of time
  //send to github
  
- int nparticles = 10222;
+ int nparticles = 14222;
  ArrayList<Particle> particles = new ArrayList<Particle>();
  
 Particle createParticle()
 {
-  int r = (int)random(3,5);
+  int r = (int)random(2, 3.2);
   PVector position = new PVector(random(r, width-r), random(r, height-r));
   PVector velocity = PVector.random2D();
   velocity.setMag(1);
-  int c = color(random(255), random(255), random(255));
+  int c = color(random(50, 255), random(50, 255), random(50, 255));
   noStroke();
   
-  Particle p = new Particle(r, position, velocity,c);
+  Particle p = new Particle(r, position, velocity, c, position.x, position.y);
   return p;
 }
 
@@ -33,7 +33,7 @@ Particle createParticle()
 void draw() 
 {
 
- background(0); //take this out for cool line drawing effect (might also need to remove bounces off walls)
+ background(2); //take this out for cool line drawing effect (might also need to remove bounces off walls)
  for (Particle p : particles)
     {
       p.display();
@@ -54,11 +54,13 @@ void draw()
     */
     
     PVector push = new PVector(mouseX-p.position.x, mouseY-p.position.y);
+    PVector pull = new PVector(p.startXPos - p.position.x, p.startYPos - p.position.y);
     float pushMag = push.mag();
     push.mult(.3/(sq(pushMag)));
     push.mult(sqrt(sq(mouseX-pmouseX)+sq(mouseY-pmouseY)));
     
     p.push(push);
+    p.pull(pull);
     
     //p.velocity.mult(p.time);
     
