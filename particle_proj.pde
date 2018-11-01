@@ -1,6 +1,4 @@
- //cursor, 3d (a little bit of depth)
- //make the acceleration decrease as a result of time
- //send to github
+ //stage tests, 
  
  int nparticles = 14222;
  ArrayList<Particle> particles = new ArrayList<Particle>();
